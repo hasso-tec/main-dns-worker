@@ -1,0 +1,11 @@
+{
+  "name": "main-dns-worker",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "author": "neuroborus",
+  "license": "ISC"
+}
