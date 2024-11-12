@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     async fetch(request, env, ctx) {
         const { headers } = request;
         const ip = headers.get('CF-Connecting-IP');
