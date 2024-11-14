@@ -17,9 +17,11 @@ jobs:
           secrets: |
             LOKI_PASSWORD
           vars: |
+            GRAFANA_URL
             LOKI_URL
             LOKI_USERNAME
         env:
           LOKI_PASSWORD: ${{ secrets.LOKI_PASSWORD }}
+          GRAFANA_URL: ${{ vars.GRAFANA_URL }}
           LOKI_URL: ${{ vars.LOKI_URL }}
           LOKI_USERNAME: ${{ vars.LOKI_USERNAME }}

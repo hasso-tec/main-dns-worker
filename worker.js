@@ -1,6 +1,17 @@
 export default {
     async fetch(request, env, ctx) {
-        const { headers } = request;
+        const {hostname} = new URL(request.url);
+        if (
+            [
+                env.GRAFANA_URL,
+                env.LOKI_URL,
+            ]
+                .includes(hostname)) {
+            // skip
+            return fetch(request);
+        }
+
+        const {headers} = request;
         const ip = headers.get('CF-Connecting-IP');
         const userAgent = headers.get('User-Agent');
         const referer = headers.get('Referer') || "Direct";
@@ -17,7 +28,7 @@ export default {
         const logEntry = {
             streams: [
                 {
-                    stream: { job: "visitors" },
+                    stream: {job: "visitors"},
                     values: [
                         [String(Date.now() * 1000000), log]
                     ]
@@ -26,7 +37,7 @@ export default {
         };
         const logData = JSON.stringify(logEntry);
 
-        const lokiUrl = `${env.LOKI_URL}/loki/api/v1/push`;
+        const lokiUrl = `https://${env.LOKI_URL}/loki/api/v1/push`;
         const username = env.LOKI_USERNAME;
         const password = env.LOKI_PASSWORD;
         const auth = "Basic " + btoa(`${username}:${password}`);
@@ -40,7 +51,7 @@ export default {
             body: logData
         }));
 
-        const response = await fetch(request);
-        return response;
+        // continue
+        return fetch(request);
     }
 };
