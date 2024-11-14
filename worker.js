@@ -17,7 +17,7 @@ module.exports = {
         const logEntry = {
             streams: [
                 {
-                    stream: { job: "hasso-visitors" },
+                    stream: { job: "visitors" },
                     values: [
                         [String(Date.now() * 1000000), log]
                     ]
