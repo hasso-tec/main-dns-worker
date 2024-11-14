@@ -21,6 +21,7 @@ export default {
             ip,
             userAgent,
             referer,
+            hostname,
             country,
         }
 
