@@ -40,8 +40,7 @@ export default {
             body: logData
         }));
 
-        return new Response('OK', {
-            status: 200,
-        });
+        const response = await fetch(request);
+        return response;
     }
 };
