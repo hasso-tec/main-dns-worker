@@ -17,11 +17,15 @@ jobs:
           secrets: |
             LOKI_PASSWORD
           vars: |
+            MAIN_URL
+            REDIRECT_URL
             GRAFANA_URL
             LOKI_URL
             LOKI_USERNAME
         env:
           LOKI_PASSWORD: ${{ secrets.LOKI_PASSWORD }}
+          MAIN_URL: ${{ vars.MAIN_URL }}
+          REDIRECT_URL: ${{ vars.REDIRECT_URL }}
           GRAFANA_URL: ${{ vars.GRAFANA_URL }}
           LOKI_URL: ${{ vars.LOKI_URL }}
           LOKI_USERNAME: ${{ vars.LOKI_USERNAME }}
