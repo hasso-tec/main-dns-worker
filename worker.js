@@ -15,9 +15,9 @@ export default {
         logRequest(headers, hostname, env, ctx);
 
         // Redirect MAIN_URL to REDIRECT_URL
-        if (hostname === env.MAIN_URL) {
+        /*if (hostname === env.MAIN_URL) {
             return Response.redirect(`https://${env.REDIRECT_URL}`, 301);
-        }
+        }*/
 
         // continue
         return fetch(request);
