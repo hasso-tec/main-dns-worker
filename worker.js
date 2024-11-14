@@ -1,7 +1,7 @@
 export default {
     async fetch(request, env, ctx) {
         const {hostname} = new URL(request.url);
-        if (
+        /*if (
             [
                 env.GRAFANA_URL,
                 env.LOKI_URL,
@@ -9,7 +9,7 @@ export default {
                 .includes(hostname)) {
             // skip
             return fetch(request);
-        }
+        }*/
 
         const {headers} = request;
         const ip = headers.get('CF-Connecting-IP');
