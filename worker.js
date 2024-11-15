@@ -38,18 +38,16 @@ function logRequest(headers, hostname, env, ctx) {
         country,
     }
 
-    const log = JSON.stringify(info);
     const logEntry = {
         streams: [
             {
                 stream: {job: "visitors"},
                 values: [
-                    [String(Date.now() * 1000000), log]
+                    [String(Date.now() * 1000000), JSON.stringify(info)]
                 ]
             }
         ]
     };
-    const logData = JSON.stringify(logEntry);
 
     const lokiUrl = `https://${env.LOKI_URL}/loki/api/v1/push`;
     const username = env.LOKI_USERNAME;
@@ -62,6 +60,6 @@ function logRequest(headers, hostname, env, ctx) {
             "Content-Type": "application/json",
             "Authorization": auth
         },
-        body: logData
+        body: JSON.stringify(logEntry)
     }));
 }
