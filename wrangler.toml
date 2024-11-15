@@ -1,7 +1,4 @@
 name = "main-dns-worker"
 main = "./worker.js"
-route = [
-    "*.hasso.tech/*",   # subdomains
-    "hasso.tech/*"      # root domain
-]
+route = "*.hasso.tech/*" # subdomains & root domain
 compatibility_date = "2024-11-14"
