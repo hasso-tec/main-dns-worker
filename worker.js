@@ -4,8 +4,8 @@ export default {
         // Exceptions
         if (
             [
-                env.GRAFANA_URL,
-                env.LOKI_URL,
+                env.DOMAIN_GRAFANA,
+                env.DOMAIN_LOKI,
             ]
                 .includes(hostname)) {
             // skip
@@ -14,9 +14,9 @@ export default {
         const {headers} = request;
         logRequest(headers, hostname, env, ctx);
 
-        // Redirect MAIN_URL to REDIRECT_URL
-        /*if (hostname === env.MAIN_URL) {
-            return Response.redirect(`https://${env.REDIRECT_URL}`, 301);
+        // Redirect DOMAIN to DOMAIN_REDIRECT
+        /*if (hostname === env.DOMAIN) {
+            return Response.redirect(`https://${env.DOMAIN_REDIRECT}`, 301);
         }*/
 
         // continue
@@ -49,7 +49,7 @@ function logRequest(headers, hostname, env, ctx) {
         ]
     };
 
-    const lokiUrl = `https://${env.LOKI_URL}/loki/api/v1/push`;
+    const lokiUrl = `https://${env.DOMAIN_LOKI}/loki/api/v1/push`;
     const username = env.LOKI_USERNAME;
     const password = env.LOKI_PASSWORD;
     const auth = "Basic " + btoa(`${username}:${password}`);
